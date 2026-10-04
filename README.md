@@ -16,7 +16,7 @@ XNA → Buenos Aires → Recoleta → Ushuaia → La Paz → Easter Island → M
 - **Deduction board:** connect the clues to answer each of the case's questions.
 - **Minigames:** chases (tap or swipe LEFT/RIGHT), rhythm (tap on the beat), standoffs (FIRE when the reticle is on target) and fog stakeouts (wipe the fog, then tap the suspect).
 - **Clock, Heat and FBI standing:** you have 28 days until kickoff. Heat and FBI standing change what people tell you.
-- **Accusation:** name the culprit and back it up with proof. A wrong guess gives you a "Wrong Hog" retry.
+- **Accusation:** name who ordered it, who killed Ringo and why, then pick 3 proof cards. Kambree stars the three key cards (the Ledger, Lau's Recording, the Hog-Head Cane). A wrong pick is rejected, and she explains why it doesn't fit.
 
 Keyboard: Space or Enter advances, arrows or A/D steer chases, and Esc closes overlays.
 

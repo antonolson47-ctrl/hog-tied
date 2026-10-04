@@ -1179,6 +1179,7 @@ const CLUES = {
   drawing: { name: 'KD\'s Drawing', short: 'KD Art', icon: 'drawing', desc: 'KD drew "the air man" from the plane: hog hat, gimbal, and a two-headed pig tattoo on his wrist. It is the single best piece of evidence in this case. It\'s in crayon.', proof: 1 },
   ledger: { name: 'The Master Ledger', short: 'Ledger', icon: 'ledger', desc: 'Twenty years of payoffs. Every page initialed "B.P. - COMMISSIONER." Every loss, every bribe, every body.', proof: 1 },
   tracker: { name: 'Keychain Tracker', short: 'Tracker', icon: 'tracker', desc: 'Inside KD\'s light-up Hog keychain: a GPS tracker registered to "Pettigrew\'s Hog Heaven Catfish LLC." He\'s been following us since XNA.', proof: 1 },
+  manifest: { name: 'Charter Manifest', short: 'Manifest', icon: 'receipt', desc: 'From Chad\'s wrecked snowmobile in Svalbard. Helicopter to Tromsø, then a cargo jet to ZNZ (Zanzibar). Cargo: "1 crate, FRAGILE: JERSEY #7 + PAPERS." Signed for by "T. DOBBINS, dhow SNAPPER, Stone Town harbor."' },
   tankphoto: { name: 'Tank\'s Phone Pics', short: 'Tank Pics', icon: 'photo', desc: 'Tank Dobbins on a dhow, holding Ringo\'s jersey like a trophy, with Chad. Chad is doing a peace sign. At a crime.', proof: 1 },
   hawkecontract: { name: 'Forged Contracts', short: 'Forgeries', icon: 'ledger', desc: 'The Hawke twins\' forgeries: one twin wrote the contracts, the other signed them. Signed for "The Commissioner" by "B."' },
   lautape: { name: 'Lau\'s Recording', short: 'Lau Tape', icon: 'tape', desc: 'Madame Lau taped every call. On this one, a sweet old Southern voice: "Ringo won\'t play ball. Have Chad clean it up, darlin\'."', proof: 1 },
@@ -1212,7 +1213,7 @@ const INTERRO = {
   crab: { id: 'crab', who: 'crab', bg: 'crabshack', prof: { nerve: 4, greed: 4, fear: 2, vanity: 2 }, likes: ['booze', 'vice'], likesHint: 'booze, cigars',
     lines: [{ s: 'That tank? Holds king crab. Centolla. Best in the world. Ain\'t nobody in it but crabs.' }, { s: 'Tito? Never texted the guy. I don\'t even own a phone. I communicate through crabs.', lie: 'titophone', bs: '...That\'s my phone. That\'s my crab emoji. Damn it. Okay. I texted him.' }, { s: 'Somebody PAID that kid? Not me. I sell crabs, sweetheart. Crabs don\'t take bribes.', lie: 'crabchip', bs: 'Lotus Palace. Macau. Yeah, the money comes from there. I just hold the box. The CRAB box.' }, { s: 'You wanna know who runs it? Ha. You couldn\'t pay me enough. They\'d put ME in the tank.' }],
     r: { beat: 'That all you got? I\'ve been pinched by crabs harder than that. Okay, not THAT hard. Ow.', bribe: 'Now we\'re talking, Arkansas.', bribeGood: 'Cuban? Hah. You\'re alright, lady. Pull up a crate.', bluff: 'You got a warrant? Down here, a warrant is a strong suggestion.', bluffBad: 'You\'re bluffing. Your left eyebrow does a thing. My ex-wife\'s does the same thing.', threaten: 'You gonna threaten ME? At the end of the world? Lady, there\'s nowhere to run down here but Antarctica.', sweet: 'Heh. Nobody\'s called me "handsome" since the scar. Since BEFORE the scar.', cocoa: 'Keep that dog away from my crabs. She\'s looking at them like... like she knows.', kambree: 'HEY! NOT THE CAPTAIN HAT!' },
-    confess: 'The kid was already dead when they brought him in. A guy in a pig hat. They said keep him cold till the money moved. I just own the tank, I swear on my mother\'s crab pot. They pay in casino chips from Macau. The kid wouldn\'t lose. That\'s it. That\'s why.', clam: 'Lawyer. And a beer. Not in that order.', reward: { clue: 'nilcontract' } },
+    confess: 'The kid was already dead when they brought him in. A guy in a pig hat. They said keep him cold till the money moved. A big boy drove the boat in. Six-seven, Hawaiian shirt, Hogs ring on his finger. Never said one word. I just own the tank, I swear on my mother\'s crab pot. They pay in casino chips from Macau. The kid wouldn\'t lose. That\'s it. That\'s why.', clam: 'Lawyer. And a beer. Not in that order.', reward: { clue: 'nilcontract' } },
   brock: { id: 'brock', who: 'brock', bg: 'lapaz', prof: { nerve: 1, greed: 3, fear: 5, vanity: 3 }, likes: ['sports', 'booze'], likesHint: 'beer, bro stuff',
     lines: [{ s: 'Bro. BRO. I just run bike tours down the Death Road. That\'s it. I\'m a hydration and adrenaline guy.' }, { s: 'Cash? Duffel bags? Nah bro, I don\'t carry bags. Bags are for people with stuff.', lie: 'brockcam', bs: 'You found my GoPro?! Bro, that\'s my CONTENT. ...Yeah okay that\'s a bag of money.' }, { s: 'Marrakech? Never heard of it. Is that a protein powder?', lie: 'wire', bs: 'OKAY. Saffron Queen. She launders it. I just send it. I\'m like FedEx but for crimes.' }],
     r: { beat: 'NOT THE FACE, BRO. I have a dating profile!', bribe: 'Bro, that\'s so generous. You\'re like a big sister. Not in a weird way.', bluff: 'You have footage?! Bro, I\'m so cooked.', threaten: 'Okay okay okay okay okay. I\'m gonna cry. I\'m crying. Altitude makes me emotional.', sweet: 'Wait, you think I\'m smart? Nobody\'s ever said that. Not even my mom. ESPECIALLY not my mom.', cocoa: 'Is she gonna bite me? She\'s gonna bite me. She licked me. Bro, I\'m in love.', kambree: 'BROOO SHE HAS A TASER BRO' },
@@ -1412,9 +1413,9 @@ CH.push({ id: 'easter', n: 6, title: 'Birdman', city: 'Rapa Nui (Easter Island),
     { t: 'game', kind: 'rhythm', id: 'birdman', bg: 'easter', cast: ['kay', 'krill'], bpm: 96, n: 12, need: 7, glyph: '🌊', title: 'Birdman Swim', how: 'Krill is swimming to the islet with the "egg." Tap on the beat to stroke. Kambree is screaming encouragement and insults.', win: 'You beat a 78-year-old man in a swimming race. Honestly? Still counts. You grab the egg.', lose: 'He beat you. He\'s seventy-eight. Kambree is filming.' },
     { t: 'interro', id: 'krill' },
     { t: 'story', s: [{ on: ['kay', 'kambree', 'kd'] },
-      ['n', 'Twenty years of payroll on a USB drive shaped like an egg. The Hogs didn\'t just lose. Somebody MADE them lose. Every fumble, every pick-six, every season my granddaddy cried into his chili. Bought and paid for.'],
-      ['kambree', 'Twenty years? Dad threw a recliner through the window in 2011. A RECLINER, Kay.', 'angry'],
-      ['kay', 'Somebody owes Dad a recliner.', 'angry'],
+      ['n', 'Twenty years of payroll on a USB drive shaped like an egg. The Hogs didn\'t just lose. Somebody MADE them lose. Every fumble, every pick-six, every season Gigi cried into her chili. Bought and paid for.'],
+      ['kambree', 'Twenty years? Gigi threw a recliner through the window in 2011. A RECLINER, Kay. She\'s five-foot-one.', 'angry'],
+      ['kay', 'Somebody owes Gigi a recliner.', 'angry'],
       ['kd', 'And a window!', 'grin'],
     ] },
     { t: 'board', qs: [{ q: 'Where does the payroll go next?', opts: ['To the Count in Monaco', 'To Gigi', 'Back to La Paz', 'To a moai savings account'], a: 0, yes: 'Monaco. But the money takes the scenic route: Krill says it\'s washed through saffron in Marrakech first.' }] },
@@ -1462,6 +1463,8 @@ CH.push({ id: 'monaco', n: 8, title: 'Sink or Swim', city: 'Monte Carlo, Monaco'
       autopsy: V('Sandy McFeeley, 34, the Count\'s golf pro and a Vauclair Talent "consultant." Beaten with a seven-iron (the club is at the bottom of the tub), then held under while the jets ran. The heat cooked him: skin sloughing off the hands in gloves, eyes clouded like poached eggs. Two broken fingers where he grabbed the edge. Water temperature: 104°F. The killer left the jets on. Like soup.', 'Sandy McFeeley, 34, the Count\'s golf pro. He was struck and then drowned in the hot tub. Two broken fingers suggest he fought back.') },
     { t: 'story', s: [{ on: ['kay'] },
       ['n', 'Somebody\'s cleaning up behind me. Every witness I find, somebody finds first. And they leave a sticker. Smash that subscribe.'],
+      ['*', 'Below the stern, a huge man in a Hawaiian shirt unties the yacht\'s tender. He looks up at me, says nothing, and putters off into the dark.'],
+      ['kay', 'Crew board by the gangway: "TENDER: T. DOBBINS." Six-foot-seven of nobody-asked. Crab Daddy said a big guy in a Hawaiian shirt drove Ringo\'s body in. Same guy? Filing that.', 'neutral'],
       ['*', 'Down on the pier, a silver-haired man in a velvet blazer jumps into a golf cart and floors it.'],
       ['kay', 'Count de Vauclair, you are NOT getting away in a golf cart. That\'s embarrassing for both of us.', 'angry'],
     ] },
@@ -1560,10 +1563,21 @@ CH.push({ id: 'svalbard', n: 11, title: 'Nobody Dies in Longyearbyen', city: 'Lo
     { t: 'story', s: [{ on: ['kay', 'kambree'] },
       ['kambree', 'He took half the ledger. The other half says who\'s paying him. "B.P." Who do we know with those initials, Kay?', 'angry'],
       ['kay', 'Let\'s not say it out loud until we can prove it.', 'neutral'],
-      ['kambree', 'Fine. Go get your kid. I\'m gonna sit in the car and ice my boobs.', 'angry'],
+      ['*', 'Chad\'s snowmobile is nose-down in a drift where he bailed for the rope ladder. Something is flapping under the windshield.'],
+      { clue: 'manifest' },
+      ['kay', 'A charter manifest. Helicopter to Tromsø, then a cargo jet straight to Zanzibar. One crate: "FRAGILE. JERSEY #7 + PAPERS."', 'shock'],
+      ['kambree', 'Ringo\'s jersey? That sick bastard took a trophy off a dead kid. Him, the jersey and our half of the ledger, all flying to the equator. Why the hell ZANZIBAR?', 'angry'],
+      ['kay', 'Look who signs for it at the other end: "T. DOBBINS, dhow SNAPPER, Stone Town harbor." Chad doesn\'t keep evidence. He hands it to the boat guy, and the boat guy sinks it in the Indian Ocean.', 'neutral'],
+      { card: { kind: 'dossier', who: 'tank', title: 'FBI FILE: THEODORE "TANK" DOBBINS', text: 'Age 38. 6\'7". Long snapper, Arkansas, 2009-2014: 412 snaps, zero bad ones. Undrafted. Opened a sports bar called Snap Daddy\'s. It went under in 11 months.\n\nNow: "TRANSPORT" in the Spread\'s books. If cash, evidence or a body has to vanish, it goes on his boat. Ushuaia: the crab boat. Monaco: the yacht tender. Zanzibar: the dhow SNAPPER.\n\nNo violent record. Texts his mother in Pine Bluff every night.', h: 430 } },
+      ['kambree', 'TANK DOBBINS? The long snapper? Gigi has his rookie card on the fridge. She calls him "the only Hog who never fumbled."', 'shock'],
+      ['kay', 'He drove Ringo\'s body to the crab tank, Kambree. He untied the Count\'s boat the night Sandy died. He\'s been at every handoff for years.', 'angry'],
+      ['kambree', 'So he\'s the Spread\'s delivery boy. And delivery boys see EVERYTHING. Who signs, who pays, who\'s on top.', 'smug'],
+      ['kay', 'And he\'s not a killer. He\'s a scared man with a boat. Get him away from Chad and he\'ll talk.', 'neutral'],
+      ['kambree', 'Then we beat that crate to Zanzibar. Go get your kid. I\'m gonna sit in the car and ice my boobs.', 'angry'],
     ] },
+    { t: 'board', qs: [{ q: 'Where are Ringo\'s jersey and the ledger half going?', opts: ['Zanzibar: Tank Dobbins\'s dhow in Stone Town', 'Back to the Count in Monaco', 'Staying in Tromsø', 'Gigi\'s house'], a: 0, yes: 'The manifest: cargo jet to ZNZ, signed for by T. Dobbins, dhow SNAPPER. Chad hands off, and Tank makes it disappear by sea.' }, { q: 'Why does Tank Dobbins matter?', opts: ['He\'s the Spread\'s transport. He\'s been at every handoff and can name the boss', 'He\'s the Commissioner', 'He killed Ringo himself', 'He sells crabs'], a: 0, yes: 'The crab boat. The yacht tender. The dhow. He drives, he sees, and he\'s scared. That\'s a witness.' }] },
     { t: 'gigi', mode: 'pick' },
-    { t: 'flight', from: 'XNA', q: 'Chad\'s helicopter took off south. Tank Dobbins, the Spread\'s enforcer, runs a dhow out of where?', dest: 'ZANZIBAR', opts: [{ code: 'ZNZ', city: 'Zanzibar, Tanzania', ok: 1 }, { code: 'MLE', city: 'Maldives', no: 'Kambree: "Honeymoon destination. We are not on a honeymoon. Get it together."' }, { code: 'CPT', city: 'Cape Town', no: 'Close-ish continent. Wrong coast.' }] },
+    { t: 'flight', from: 'XNA', q: 'The manifest: Chad\'s crate lands at ZNZ and is signed for by T. Dobbins, dhow SNAPPER, Stone Town harbor. Where to?', dest: 'ZANZIBAR', opts: [{ code: 'ZNZ', city: 'Zanzibar, Tanzania', ok: 1 }, { code: 'MLE', city: 'Maldives', no: 'Kambree: "Honeymoon destination. We are not on a honeymoon. Get it together."' }, { code: 'CPT', city: 'Cape Town', no: 'Close-ish continent. Wrong coast.' }] },
   ] });
 
 CH.push({ id: 'zanzibar', n: 12, title: 'Spice World', city: 'Stone Town, Zanzibar', bg: 'zanzibar', music: 'travel', party: { kd: 1, cocoa: 1, kambree: 1 }, tag: 'Giant tortoises. Carved doors. A tracker hiding in plain sight.',
@@ -1580,6 +1594,15 @@ CH.push({ id: 'zanzibar', n: 12, title: 'Spice World', city: 'Stone Town, Zanzib
       ['kay', 'Maybe, baby. But don\'t you worry. Mommy\'s handling it. Go feed the tortoise a hibiscus.', 'smile'],
     ] },
     { t: 'invest', title: 'STONE TOWN DOCKS', bg: 'zanzibar', sites: [{ id: 'dock', name: 'The Dhow Harbor', clues: [{ id: 'tankphoto', x: .7, y: .78 }], jokes: [{ icon: 'cash', x: .3, y: .85, who: 'kambree', say: 'A tip jar for a tortoise. I respect the hustle.' }] }] },
+    { t: 'story', s: [{ on: ['kay', 'kambree', 'tank'], bg: 'zanzibar' },
+      ['*', 'At the end of the pier: a dhow with SNAPPER painted on the bow. On deck, six-foot-seven of Hawaiian shirt is prying open a crate stenciled "FRAGILE."'],
+      ['kay', 'Tank Dobbins. Arkansas long snapper, 2009 to 2014. Four hundred twelve snaps. Zero bad ones.', 'neutral'],
+      ['tank', '...You know my snap count? Ma\'am, NOBODY knows my snap count.', 'scared'],
+      ['kambree', 'Our mom does. She also has your rookie card on her fridge, and you just broke her heart, you big dumb boat.', 'angry'],
+      ['tank', 'I just drive, ma\'am. Chad said drop the crate past the reef. I didn\'t open it. I don\'t open things.', 'sad'],
+      ['*', 'He looks at the jersey sticking out of the crate. Then he cuts the line and SNAPPER lurches away from the pier.'],
+      ['kambree', 'He\'s RUNNING. On a BOAT. Kay, steal that other boat. I\'m driving.', 'angry'],
+    ] },
     { t: 'game', kind: 'chase', id: 'dhow', vehicle: 'boat', bg: 'zanzibar', road: '#2a8ab8', side: '#1a6a98', stripe: '#9ae0f8', obs: ['wave', 'barrel', 'crate'], dur: 28, target: 'TANK', targetV: 'boat', targetCol: '#2ab0d8', title: 'Dhow Chase', how: 'Tank\'s escaping by dhow! Kambree is steering (badly). Tap LEFT/RIGHT to dodge waves and floating crates.', win: 'Tank\'s dhow runs aground on a sandbar. He sits down in the water and sighs like a man who\'s been waiting to get caught.', lose: 'Your sail tears. Tank waves. Kambree steals a jet ski.' },
     { t: 'interro', id: 'tank' },
     { t: 'board', qs: [{ q: 'Who killed Ringo, Tito, Sandy and Bjarki?', opts: ['Tank Dobbins', 'HogWildChad, the Cleaner', 'Dr. Krill', 'The Count'], a: 1, yes: 'Chad. Tank drove the boat. Chad did the cleaning. KD\'s drawing proves it.' }, { q: 'Who forged the fake NIL contracts?', opts: ['The Hawke twins in Siem Reap', 'Zohra', 'Coach Barlow', 'Gigi'], a: 0 }] },
@@ -1652,7 +1675,7 @@ CH.push({ id: 'ulaanbaatar', n: 15, title: 'Naadam Good', city: 'Ulaanbaatar, Mo
       { on: ['kay', 'pettigrew', 'kambree'] },
       ['pettigrew', '(from the helicopter, bullhorn) Darlin\', you were never supposed to be this GOOD. See y\'all at Homecoming!', 'smile'],
       ['kay', 'Bo Pettigrew. The Commissioner. He paid for my whole trip so he could watch me through my baby\'s keychain.', 'angry'],
-      ['kambree', 'Twenty years of making Dad cry into his chili. He\'s DEAD, Kay. Legally. Like, arrested-dead.', 'angry'],
+      ['kambree', 'Twenty years of making Gigi cry into her chili. He\'s DEAD, Kay. Legally. Like, arrested-dead.', 'angry'],
       ['kay', 'Homecoming. He\'ll be in his suite. And Chad knows he\'s about to be the fall guy.', 'neutral'],
     ] },
     { t: 'flight', from: 'UBN · Ulaanbaatar', q: 'Pettigrew said "See y\'all at Homecoming." Where?', dest: 'FAYETTEVILLE', opts: [{ code: 'XNA', city: 'Fayetteville, Arkansas', ok: 1 }, { code: 'LIT', city: 'Little Rock', no: 'Kambree: "If you say Little Rock one more time I\'m pushing you out of the plane."' }, { code: 'MCO', city: 'Orlando', no: 'KD\'s still owed that vacation. But not now.' }] },
@@ -1681,7 +1704,7 @@ CH.push({ id: 'homecoming', n: 16, title: 'Homecoming', city: 'Fayetteville, Ark
       ['kay', 'Bo Pettigrew. You ran the Spread for twenty years. You bet against your own team and paid kids to lose. When Ringo said no, you had Chad kill him and dress it up as a kidnapping.', 'angry'],
       ['kay', 'You tracked me through my son\'s keychain. And today you shot your own Cleaner with the derringer in your cane. Your Siamese twin of crime. You cut him loose, and you don\'t even have the decency to be sad.', 'angry'],
       ['pettigrew', 'Darlin\'... it was a sure thing in an unsure world. Twenty years of guaranteed money. And one boy with a conscience was gonna ruin it for one lousy winning season.', 'smile'],
-      ['kambree', 'One winning season? Do you know what that would\'ve MEANT to Dad?! You absolute dried-up catfish turd!', 'angry'],
+      ['kambree', 'One winning season? Do you know what that would\'ve MEANT to Gigi?! You absolute dried-up catfish turd!', 'angry'],
       ['*', 'Pettigrew grabs the team mascot, a big foam hog named Sooey Louie, by the snout, and runs for the field.'],
       ['kay', 'He took Sooey Louie! Kambree, he took the HOG!', 'shock'],
     ] },
@@ -1697,7 +1720,7 @@ const WRONG_HOG = [{ on: ['kay', 'kambree'], music: 'noir' },
   { hours: -12 }];
 const ENDING = [
   { on: ['kay', 'kambree'], bg: 'stadium', music: 'victory' },
-  ['n', 'Second half. Biscuit Toombs, free of the Spread at last, threw four touchdowns. Every receiver had Ringo\'s #7 written on his wristband. The Hogs came back from 31 down. Seventy-six thousand people lost their voices. My granddaddy would\'ve thrown a recliner. In a good way.'],
+  ['n', 'Second half. Biscuit Toombs, free of the Spread at last, threw four touchdowns. Every receiver had Ringo\'s #7 written on his wristband. The Hogs came back from 31 down. Seventy-six thousand people lost their voices. Back home, Gigi threw a recliner through the window. In a good way.'],
   { if: 'lauBusted', then: [['kambree', 'Lau\'s in custody. The Count\'s in custody. Zurab is in custody and he\'s still toasting. The twins asked for adjoining cells. Like, VERY adjoining.', 'grin']], else: [['kambree', 'Lau walked, but we got everybody else. The Count, Zurab, the twins. And Pettigrew\'s going away until the sun burns out.', 'smirk']] },
   { on: ['kay', 'gigi', 'kd', 'cocoa'], party: { kd: 1, cocoa: 1 } },
   ['gigi', 'We made it for the fourth quarter! I brought cookies for the whole section.', 'smile'],
@@ -1946,6 +1969,7 @@ function drawCard(c, t) {
       if (c.title) txt(tx(c.title), x + w / 2, y + 26, c.kind === 'postcard' ? fm(20) : fa(18), c.kind === 'postcard' ? '#c03a6a' : '#3a1a10', null);
       fitText(tx(c.text), x + 20, y + (c.title ? 50 : 22), w - 40, h - (c.title ? 74 : 46), c.font === 'marker' ? fm : c.font === 'type' ? ft : (px => fm(px)), c.px || 17, c.col || '#2a1a10', c.align || 'left');
       if (c.kind === 'postcard') { g.save(); g.translate(x + w - 46, y + h - 40); g.rotate(-.2); mochiMeow(0, 0, .5); g.restore(); } }
+  } else if (c.kind === 'dossier') { drawDossier(c);
   } else if (c.kind === 'chapter') {
     vgrad(0, 0, W, H, [[0, 'rgba(5,7,26,.6)'], [.5, 'rgba(5,7,26,.9)'], [1, 'rgba(5,7,26,.6)']]);
     const cy = H * .42; txt('CHAPTER ' + c.n, W / 2, cy - 54, fa(18), '#5fe3ff', INK, 3);
@@ -1957,6 +1981,22 @@ function drawCard(c, t) {
     const w = Math.min(W - 40, 380); panel((W - w) / 2, H * .35, w, H * .3, { edge: '#ffd23a' }); fitText(tx(c.text), (W - w) / 2 + 20, H * .35 + 20, w - 40, H * .3 - 40, ft, 18, '#fff', 'center'); }
   g.restore();
   if (t > .5) { const al = .5 + .5 * Math.sin(RT.t * 5); txt('TAP TO CONTINUE', W / 2, H - 26, fa(12), `rgba(255,210,58,${al})`, null); }
+}
+
+// FBI file card with a mugshot (used to introduce Tank Dobbins)
+function drawDossier(c) {
+  const W = L.W, H = L.H, wide = !L.portrait, w = Math.min(W - 32, wide ? 640 : 380), h = Math.min(H - 84, c.h || 420), x = (W - w) / 2, y = (H - h) / 2 + 8;
+  paper(x, y, w, h, -.01, '#efe4c8');
+  g.save(); g.fillStyle = '#9d1c2a'; g.fillRect(x + 14, y + 12, w - 28, 26); g.restore();
+  txt(tx(c.title), x + w / 2, y + 25, fa(wide ? 17 : 15), '#fff', null);
+  const pw = wide ? 150 : 124, ph = wide ? h - 70 : 140, px = x + 18, py = y + 48;
+  g.save(); g.fillStyle = '#c9ccd2'; g.fillRect(px, py, pw, ph); g.strokeStyle = 'rgba(0,0,0,.18)'; g.lineWidth = 1; for (let k = 1; k < 7; k++) { const ly = py + ph * k / 7; g.beginPath(); g.moveTo(px, ly); g.lineTo(px + pw, ly); g.stroke(); }
+  g.beginPath(); g.rect(px, py, pw, ph); g.clip(); const s = Math.min(pw / 150, ph / 150); drawCast(c.who, px + pw / 2, py + 256 * s, s, { ex: "tired" }); g.restore();
+  g.save(); g.strokeStyle = INK; g.lineWidth = 2.5; g.strokeRect(px, py, pw, ph); g.restore();
+  g.save(); g.translate(px + pw - 26, py + ph - 18); g.rotate(-.25); g.strokeStyle = '#c0102a'; g.lineWidth = 2.5; g.strokeRect(-34, -11, 68, 22); txt('WITNESS?', 0, 1, fa(12), '#c0102a', null); g.restore();
+  if (wide) fitText(tx(c.text), px + pw + 16, py, w - pw - 52, h - 66, ft, 15, '#2a1a10', 'left');
+  else { const name = (CAST[c.who] && CAST[c.who].name) || ''; txt(name, px + pw + (w - pw - 36) / 2 + 8, py + ph / 2 - 8, fa(18), '#3a1a10', null); txt('KNOWN AS: TRANSPORT', px + pw + (w - pw - 36) / 2 + 8, py + ph / 2 + 14, fo(11, 600), '#9d1c2a', null);
+    fitText(tx(c.text), x + 18, py + ph + 12, w - 36, h - ph - 70, ft, 14, '#2a1a10', 'left'); }
 }
 
 /* ===================== INVESTIGATION, CRIME SCENES, DEDUCTION BOARD, FLIGHT BOARD ===================== */
@@ -2475,8 +2515,23 @@ const ACCUSE = {
   order: { q: 'WHO ORDERED IT?', opts: [['pettigrew', 'Bo Pettigrew'], ['lau', 'Madame Jade Lau'], ['count', 'Count de Vauclair'], ['barlow', 'Coach Duke Barlow'], ['zurab', 'Zurab'], ['tank', 'Tank Dobbins']], a: 'pettigrew' },
   trig: { q: 'WHO KILLED RINGO?', opts: [['tank', 'Tank Dobbins'], ['batzorig', 'Batzorig'], ['krill', 'Dr. Krill'], ['chad', 'HogWildChad'], ['crab', 'Crab Daddy'], ['kambree', 'Agent Kambree (she has an alibi and a bladder)']], a: 'chad' },
   why: { q: 'WHY?', opts: [['a', 'Twenty years of betting against his own team, with the debts finally due'], ['b', 'Jealousy: Ringo was dating his niece'], ['c', 'Revenge for a losing season'], ['d', 'A plan to build a hog-themed casino in Macau']], a: 'a' },
-  proof: { q: 'PROOF (PICK 3)', need: ['ledger', 'cane', 'tracker', 'tankphoto', 'lautape', 'drawing', 'casing'] },
+  proof: { q: 'PROOF (PICK 3)', need: ['ledger', 'cane', 'tracker', 'tankphoto', 'lautape', 'drawing', 'casing'], key: ['ledger', 'lautape', 'cane'] },
 };
+// Kambree's nudge at the top of each chooser, and why each wrong pick doesn't fit
+const ACC_HINT = {
+  order: V('KAMBREE: Whose initials are on every page of the ledger? "B.P. - COMMISSIONER." Use your big brain.', 'KAMBREE: Whose initials are on every page of the ledger? "B.P. - COMMISSIONER."'),
+  trig: V('KAMBREE: Pig-snout hat, a gimbal, a sticker at every damn crime scene. Who\'s the Cleaner, Kay?', 'KAMBREE: Pig-snout hat, a gimbal, a sticker at every crime scene. Who\'s the Cleaner?'),
+  why: 'KAMBREE: Follow the money. It\'s ALWAYS the money.',
+  proof: V('KAMBREE: Pick three that put BO HIMSELF in it: his initials, his voice and his gun. I starred them. You\'re welcome, dumbass. 😾', 'KAMBREE: Pick three that put BO HIMSELF in it: his initials, his voice and his gun. I starred them. You\'re welcome. 😾'),
+};
+const ACC_NOPE = {
+  lau: 'Lau taped the calls. She\'s the bank, not the boss. Whose voice is on her tape?', count: 'The Count is a wallet with a yacht. The ledger isn\'t initialed "C de V."', barlow: 'Barlow just screams at halftime. His initials are D.B., not B.P.', zurab: 'Zurab moves the money and makes the toasts. He works FOR somebody.',
+  tank: 'Tank drives the boat. He said it himself: "I just drive." The boss is "the old man... the Commissioner."', batzorig: 'Batzorig was wrestling in Mongolia. Hard alibi to beat.', krill: 'Krill is a creep with a shovel on Easter Island, not a shooter.', crab: 'Crab Daddy only owned the tank: "The kid was already dead when they brought him in." Brought by a pig hat.', kambree: V('I\'m going to pretend you didn\'t tap that, you absolute traitor.', 'I\'m going to pretend you didn\'t tap that.'),
+  b: 'Pettigrew doesn\'t have a niece. He has a ledger.', c: 'A losing season is exactly what he WANTED. He bet on it.', d: 'Macau is where the money got washed, not why Ringo died.',
+  coin: 'The double-pig coin is the Spread\'s calling card. Every crook in the Spread has one. It doesn\'t point at Bo.', crabchip: 'The Macau chip proves Ringo was offered money. Not WHO offered it.', golfball: 'That golf ball is monogrammed "C de V." It convicts the Count of bad golf, not Bo of anything.', toast: 'Zurab\'s toast pointed to the forgers in Siem Reap. Money trail, not the man.',
+  hawkecontract: 'Signed "B." for "The Commissioner." Close, but any lawyer says "B" could be anybody. We need his name, voice or gun.', chadsticker: 'The sticker proves Chad was there. Chad\'s dead. We need the man who shot him.', nilcontract: 'The fake NIL deal is from Vauclair Talent. That\'s the Count\'s shell company, not Bo.', yachttape: 'The yacht tape shows the pig hat: Chad. That\'s the hands, not the brain.', saffron: 'Saffron books prove Marrakech laundering. Smells great. Doesn\'t say "Bo."',
+};
+const ACC_OK = { tracker: 'Works: the tracker is registered to Pettigrew\'s catfish LLC.', tankphoto: 'Works: Tank\'s pics tie Chad to Ringo\'s jersey.', drawing: 'Works: KD\'s drawing nails Chad as "the air man."', casing: 'Works: a .41 derringer casing, the gun that fits his cane.', ledger: 'Ledger: every page initialed "B.P. - COMMISSIONER."', lautape: 'Lau\'s tape: his own voice saying "Have Chad clean it up."', cane: 'The cane: the hollow derringer chamber that killed Chad.' };
 function accuseStart(step, onDone) { RT.acc = { step, onDone, pick: { order: null, trig: null, why: null, proof: [] }, open: null, res: null, t: 0 }; RT.scene = 'accuse'; music('tension'); }
 function drawAccuse() {
   const A = RT.acc, W = L.W, H = L.H; A.t += DT; drawBG('board', W, H);
@@ -2494,14 +2549,29 @@ function drawAccuse() {
   drawHUD({ board: true });
 }
 function drawAccuseChooser() {
-  const A = RT.acc, W = L.W, H = L.H, k = A.open, def = ACCUSE[k]; g.save(); g.fillStyle = 'rgba(0,0,0,.7)'; g.fillRect(0, 0, W, H); g.restore(); addHit('acc_bg', 0, 0, W, H, () => A.open = null);
-  const w = Math.min(W - 24, 560), h = H - 70, x = (W - w) / 2, y = 52; panel(x, y, w, h, { edge: '#ffd23a' }); addHit('acc_panel', x, y, w, h, () => {});
-  txt(def.q, x + w / 2, y + 22, fa(18), '#ffd23a', INK, 3);
+  const A = RT.acc, W = L.W, H = L.H, k = A.open, def = ACCUSE[k]; g.save(); g.fillStyle = 'rgba(0,0,0,.7)'; g.fillRect(0, 0, W, H); g.restore(); addHit('acc_bg', 0, 0, W, H, () => { A.open = null; A.msg = null; });
+  const wide = !L.portrait, w = Math.min(W - 24, k === 'proof' && wide ? 780 : 560), h = H - 64, x = (W - w) / 2, y = 50; panel(x, y, w, h, { edge: '#ffd23a' }); addHit('acc_panel', x, y, w, h, () => {});
+  txt(def.q, x + w / 2, y + 18, fa(17), '#ffd23a', INK, 3);
+  // message slot: Kambree's hint, or why the last pick doesn't fit
+  const m = A.msg && A.msg.k === k ? A.msg : null, mh = wide ? 34 : 48, my = y + 32;
+  g.save(); rr(x + 12, my, w - 24, mh, 10, m ? (m.bad ? 'rgba(160,20,40,.35)' : 'rgba(30,140,90,.3)') : 'rgba(255,90,168,.16)', m ? (m.bad ? '#ff6a7a' : '#5adb9a') : '#ff5aa8', 1.4); g.restore();
+  fitText(tx(m ? (m.bad ? '✗ ' : '✓ ') + m.text : ACC_HINT[k]), x + 22, my + 5, w - 44, mh - 8, px => fo(px, 600), 13, m ? (m.bad ? '#ffd0d6' : '#c8ffe0') : '#ffd0ea', 'left', 1.2, 9);
   let opts; const DECOY = ['coin', 'crabchip', 'golfball', 'toast', 'hawkecontract', 'chadsticker', 'nilcontract', 'yachttape', 'saffron']; if (k === 'proof') opts = GS.clues.filter(c => CLUES[c] && (CLUES[c].proof || DECOY.includes(c))).map(c => [c, CLUES[c].name]); else opts = def.opts;
-  const cols = k === 'why' ? 1 : k === 'proof' ? (L.portrait ? 2 : 3) : (L.portrait ? 1 : 2), gap = 6, bw = (w - 24 - gap * (cols - 1)) / cols, bh = Math.min(k === 'why' ? 52 : 44, (h - 100 - gap * Math.ceil(opts.length / cols)) / Math.ceil(opts.length / cols));
-  opts.forEach(([id, name], i) => { const bx = x + 12 + (i % cols) * (bw + gap), by = y + 42 + Math.floor(i / cols) * (bh + gap); const sel = k === 'proof' ? A.pick.proof.includes(id) : A.pick[k] === id;
-    btn('ao_' + id, bx, by, bw, bh, name, () => { if (k === 'proof') { const p = A.pick.proof; if (sel) p.splice(p.indexOf(id), 1); else if (p.length < 3) p.push(id); else toast('Only 3 cards. Pick your best.', '#ffd23a'); sfx('tap'); } else { A.pick[k] = id; A.open = null; sfx('tap'); } }, { col: sel ? '#1a8a5a' : '#22305a', px: 13, icon: k === 'proof' ? '' : null }); });
-  if (k === 'proof') btn('acc_pdone', x + w / 2 - 80, y + h - 52, 160, 42, 'DONE (' + A.pick.proof.length + '/3)', () => A.open = null, { col: '#2266dd' });
+  if (k === 'proof') opts.sort((a, b) => (def.key.includes(b[0]) ? 1 : 0) - (def.key.includes(a[0]) ? 1 : 0));
+  const top = my + mh + 8, bottom = y + h - (k === 'proof' ? 56 : 10);
+  const cols = k === 'why' ? 1 : k === 'proof' ? (wide ? 4 : 2) : (wide ? 2 : 1), gap = 6, rows = Math.ceil(opts.length / cols), bw = (w - 24 - gap * (cols - 1)) / cols, bh = Math.min(k === 'why' ? 52 : 46, (bottom - top - gap * (rows - 1)) / rows);
+  const right = id => k === 'proof' ? def.need.includes(id) : def.a === id;
+  opts.forEach(([id, name], i) => { const bx = x + 12 + (i % cols) * (bw + gap), by = top + Math.floor(i / cols) * (bh + gap); const sel = k === 'proof' ? A.pick.proof.includes(id) : A.pick[k] === id; const key = k === 'proof' && def.key.includes(id), nope = A.nope && A.nope[id];
+    if (key && !sel) { const pu = .5 + .5 * Math.sin(RT.t * 4); g.save(); g.shadowColor = '#ffd23a'; g.shadowBlur = 10 + 10 * pu; rr(bx - 2, by - 2, bw + 4, bh + 4, 12, null, `rgba(255,210,58,${.6 + .4 * pu})`, 3); g.restore(); }
+    btn('ao_' + id, bx, by, bw, bh, name, () => {
+      if (!right(id)) { A.nope = A.nope || {}; A.nope[id] = 1; A.msg = { k, bad: 1, text: ACC_NOPE[id] || 'That doesn\'t tie Bo Pettigrew to anything. Try a starred card.' }; sfx('wrong'); shake(4); return; }
+      if (k === 'proof') { const p = A.pick.proof; if (sel) { p.splice(p.indexOf(id), 1); A.msg = null; } else if (p.length < 3) { p.push(id); A.msg = { k, bad: 0, text: ACC_OK[id] || 'That fits.' }; } else toast('Only 3 cards. Pick your best.', '#ffd23a'); sfx('tap'); }
+      else { A.pick[k] = id; A.open = null; A.msg = null; sfx('tap'); }
+    }, { col: sel ? '#1a8a5a' : nope ? '#4a2030' : key ? '#3a3410' : '#22305a', px: 13, icon: k === 'proof' ? '' : null });
+    if (key) { const bwid = Math.min(84, bw * .42); rr(bx + bw - bwid - 4, by - 7, bwid, 16, 8, '#ffd23a', INK, 1.5); txt('★ KAMBREE', bx + bw - bwid / 2 - 4, by + 1, fa(9.5), INK, null); }
+    if (nope) txt('✗', bx + 12, by + bh / 2, fa(14), '#ff8a9a', null);
+  });
+  if (k === 'proof') btn('acc_pdone', x + w / 2 - 80, y + h - 50, 160, 40, 'DONE (' + A.pick.proof.length + '/3)', () => { A.open = null; A.msg = null; }, { col: '#2266dd' });
 }
 function accuseResolve() {
   const A = RT.acc, p = A.pick; const okProof = p.proof.filter(c => ACCUSE.proof.need.includes(c)).length >= 3;

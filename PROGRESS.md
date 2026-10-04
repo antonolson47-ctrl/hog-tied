@@ -30,6 +30,22 @@
 - Final screenshots are in `screenshots/`.
 - Live site verified (Oct 4, about 2:45 PM CT): HTTP 200, and `test/live.js` in WebKit iPhone 13 portrait and landscape gave 0 errors.
 
+## Round 2 fixes (Anton's playtest, Oct 4, 4:37 PM CT)
+- **Svalbard → Zanzibar link:**
+  - New clue `manifest` (Charter Manifest), found in Chad's wrecked snowmobile after the chase. It names the cargo-jet route to ZNZ, the cargo ("JERSEY #7 + PAPERS") and who signs for it ("T. DOBBINS, dhow SNAPPER").
+  - New dialogue and a new 2-question board in ch. 11, which point to Zanzibar and explain why Tank matters. The flight question now cites the manifest.
+- **Tank Dobbins setup:**
+  - Ch. 4: Crab Daddy's confession now mentions "a big boy drove the boat in. Six-seven, Hawaiian shirt".
+  - Ch. 8: in Monaco, Kayleigh sees the yacht tender driver "T. DOBBINS".
+  - Ch. 11: a new FBI-file card (`kind: 'dossier'`, with a mugshot) gives his background.
+  - Ch. 12: a new in-person intro on the SNAPPER pier, before the dhow chase.
+- **Dad → Gigi:** every chili and recliner-through-the-window mention (ch. 6 Easter Island, ch. 15 Ulaanbaatar, ch. 16 confrontation and ending narration) now refers to Gigi. No "Dad" remains anywhere in the script.
+- **Accusation:**
+  - Kambree's hint line sits at the top of each chooser.
+  - The 3 key proof cards (Ledger, Lau's Recording, Hog-Head Cane) glow and carry a "★ KAMBREE" badge, and are sorted first.
+  - Every wrong pick (suspect, motive or decoy clue) is rejected, with a specific "why it doesn't fit" line. The other valid proofs are still accepted.
+  - New test, `test/accuse.js`: PASS in WebKit portrait and landscape.
+
 ## Publishing
 - Repo: https://github.com/antonolson47-ctrl/hog-tied (the Pages site deploys from `main` at `/`)
 - Live: https://antonolson47-ctrl.github.io/hog-tied/

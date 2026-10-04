@@ -123,6 +123,7 @@ function drawCard(c, t) {
       if (c.title) txt(tx(c.title), x + w / 2, y + 26, c.kind === 'postcard' ? fm(20) : fa(18), c.kind === 'postcard' ? '#c03a6a' : '#3a1a10', null);
       fitText(tx(c.text), x + 20, y + (c.title ? 50 : 22), w - 40, h - (c.title ? 74 : 46), c.font === 'marker' ? fm : c.font === 'type' ? ft : (px => fm(px)), c.px || 17, c.col || '#2a1a10', c.align || 'left');
       if (c.kind === 'postcard') { g.save(); g.translate(x + w - 46, y + h - 40); g.rotate(-.2); mochiMeow(0, 0, .5); g.restore(); } }
+  } else if (c.kind === 'dossier') { drawDossier(c);
   } else if (c.kind === 'chapter') {
     vgrad(0, 0, W, H, [[0, 'rgba(5,7,26,.6)'], [.5, 'rgba(5,7,26,.9)'], [1, 'rgba(5,7,26,.6)']]);
     const cy = H * .42; txt('CHAPTER ' + c.n, W / 2, cy - 54, fa(18), '#5fe3ff', INK, 3);
@@ -134,4 +135,20 @@ function drawCard(c, t) {
     const w = Math.min(W - 40, 380); panel((W - w) / 2, H * .35, w, H * .3, { edge: '#ffd23a' }); fitText(tx(c.text), (W - w) / 2 + 20, H * .35 + 20, w - 40, H * .3 - 40, ft, 18, '#fff', 'center'); }
   g.restore();
   if (t > .5) { const al = .5 + .5 * Math.sin(RT.t * 5); txt('TAP TO CONTINUE', W / 2, H - 26, fa(12), `rgba(255,210,58,${al})`, null); }
+}
+
+// FBI file card with a mugshot (used to introduce Tank Dobbins)
+function drawDossier(c) {
+  const W = L.W, H = L.H, wide = !L.portrait, w = Math.min(W - 32, wide ? 640 : 380), h = Math.min(H - 84, c.h || 420), x = (W - w) / 2, y = (H - h) / 2 + 8;
+  paper(x, y, w, h, -.01, '#efe4c8');
+  g.save(); g.fillStyle = '#9d1c2a'; g.fillRect(x + 14, y + 12, w - 28, 26); g.restore();
+  txt(tx(c.title), x + w / 2, y + 25, fa(wide ? 17 : 15), '#fff', null);
+  const pw = wide ? 150 : 124, ph = wide ? h - 70 : 140, px = x + 18, py = y + 48;
+  g.save(); g.fillStyle = '#c9ccd2'; g.fillRect(px, py, pw, ph); g.strokeStyle = 'rgba(0,0,0,.18)'; g.lineWidth = 1; for (let k = 1; k < 7; k++) { const ly = py + ph * k / 7; g.beginPath(); g.moveTo(px, ly); g.lineTo(px + pw, ly); g.stroke(); }
+  g.beginPath(); g.rect(px, py, pw, ph); g.clip(); const s = Math.min(pw / 150, ph / 150); drawCast(c.who, px + pw / 2, py + 256 * s, s, { ex: "tired" }); g.restore();
+  g.save(); g.strokeStyle = INK; g.lineWidth = 2.5; g.strokeRect(px, py, pw, ph); g.restore();
+  g.save(); g.translate(px + pw - 26, py + ph - 18); g.rotate(-.25); g.strokeStyle = '#c0102a'; g.lineWidth = 2.5; g.strokeRect(-34, -11, 68, 22); txt('WITNESS?', 0, 1, fa(12), '#c0102a', null); g.restore();
+  if (wide) fitText(tx(c.text), px + pw + 16, py, w - pw - 52, h - 66, ft, 15, '#2a1a10', 'left');
+  else { const name = (CAST[c.who] && CAST[c.who].name) || ''; txt(name, px + pw + (w - pw - 36) / 2 + 8, py + ph / 2 - 8, fa(18), '#3a1a10', null); txt('KNOWN AS: TRANSPORT', px + pw + (w - pw - 36) / 2 + 8, py + ph / 2 + 14, fo(11, 600), '#9d1c2a', null);
+    fitText(tx(c.text), x + 18, py + ph + 12, w - 36, h - ph - 70, ft, 14, '#2a1a10', 'left'); }
 }

@@ -86,8 +86,23 @@ const ACCUSE = {
   order: { q: 'WHO ORDERED IT?', opts: [['pettigrew', 'Bo Pettigrew'], ['lau', 'Madame Jade Lau'], ['count', 'Count de Vauclair'], ['barlow', 'Coach Duke Barlow'], ['zurab', 'Zurab'], ['tank', 'Tank Dobbins']], a: 'pettigrew' },
   trig: { q: 'WHO KILLED RINGO?', opts: [['tank', 'Tank Dobbins'], ['batzorig', 'Batzorig'], ['krill', 'Dr. Krill'], ['chad', 'HogWildChad'], ['crab', 'Crab Daddy'], ['kambree', 'Agent Kambree (she has an alibi and a bladder)']], a: 'chad' },
   why: { q: 'WHY?', opts: [['a', 'Twenty years of betting against his own team, with the debts finally due'], ['b', 'Jealousy: Ringo was dating his niece'], ['c', 'Revenge for a losing season'], ['d', 'A plan to build a hog-themed casino in Macau']], a: 'a' },
-  proof: { q: 'PROOF (PICK 3)', need: ['ledger', 'cane', 'tracker', 'tankphoto', 'lautape', 'drawing', 'casing'] },
+  proof: { q: 'PROOF (PICK 3)', need: ['ledger', 'cane', 'tracker', 'tankphoto', 'lautape', 'drawing', 'casing'], key: ['ledger', 'lautape', 'cane'] },
 };
+// Kambree's nudge at the top of each chooser, and why each wrong pick doesn't fit
+const ACC_HINT = {
+  order: V('KAMBREE: Whose initials are on every page of the ledger? "B.P. - COMMISSIONER." Use your big brain.', 'KAMBREE: Whose initials are on every page of the ledger? "B.P. - COMMISSIONER."'),
+  trig: V('KAMBREE: Pig-snout hat, a gimbal, a sticker at every damn crime scene. Who\'s the Cleaner, Kay?', 'KAMBREE: Pig-snout hat, a gimbal, a sticker at every crime scene. Who\'s the Cleaner?'),
+  why: 'KAMBREE: Follow the money. It\'s ALWAYS the money.',
+  proof: V('KAMBREE: Pick three that put BO HIMSELF in it: his initials, his voice and his gun. I starred them. You\'re welcome, dumbass. 😾', 'KAMBREE: Pick three that put BO HIMSELF in it: his initials, his voice and his gun. I starred them. You\'re welcome. 😾'),
+};
+const ACC_NOPE = {
+  lau: 'Lau taped the calls. She\'s the bank, not the boss. Whose voice is on her tape?', count: 'The Count is a wallet with a yacht. The ledger isn\'t initialed "C de V."', barlow: 'Barlow just screams at halftime. His initials are D.B., not B.P.', zurab: 'Zurab moves the money and makes the toasts. He works FOR somebody.',
+  tank: 'Tank drives the boat. He said it himself: "I just drive." The boss is "the old man... the Commissioner."', batzorig: 'Batzorig was wrestling in Mongolia. Hard alibi to beat.', krill: 'Krill is a creep with a shovel on Easter Island, not a shooter.', crab: 'Crab Daddy only owned the tank: "The kid was already dead when they brought him in." Brought by a pig hat.', kambree: V('I\'m going to pretend you didn\'t tap that, you absolute traitor.', 'I\'m going to pretend you didn\'t tap that.'),
+  b: 'Pettigrew doesn\'t have a niece. He has a ledger.', c: 'A losing season is exactly what he WANTED. He bet on it.', d: 'Macau is where the money got washed, not why Ringo died.',
+  coin: 'The double-pig coin is the Spread\'s calling card. Every crook in the Spread has one. It doesn\'t point at Bo.', crabchip: 'The Macau chip proves Ringo was offered money. Not WHO offered it.', golfball: 'That golf ball is monogrammed "C de V." It convicts the Count of bad golf, not Bo of anything.', toast: 'Zurab\'s toast pointed to the forgers in Siem Reap. Money trail, not the man.',
+  hawkecontract: 'Signed "B." for "The Commissioner." Close, but any lawyer says "B" could be anybody. We need his name, voice or gun.', chadsticker: 'The sticker proves Chad was there. Chad\'s dead. We need the man who shot him.', nilcontract: 'The fake NIL deal is from Vauclair Talent. That\'s the Count\'s shell company, not Bo.', yachttape: 'The yacht tape shows the pig hat: Chad. That\'s the hands, not the brain.', saffron: 'Saffron books prove Marrakech laundering. Smells great. Doesn\'t say "Bo."',
+};
+const ACC_OK = { tracker: 'Works: the tracker is registered to Pettigrew\'s catfish LLC.', tankphoto: 'Works: Tank\'s pics tie Chad to Ringo\'s jersey.', drawing: 'Works: KD\'s drawing nails Chad as "the air man."', casing: 'Works: a .41 derringer casing, the gun that fits his cane.', ledger: 'Ledger: every page initialed "B.P. - COMMISSIONER."', lautape: 'Lau\'s tape: his own voice saying "Have Chad clean it up."', cane: 'The cane: the hollow derringer chamber that killed Chad.' };
 function accuseStart(step, onDone) { RT.acc = { step, onDone, pick: { order: null, trig: null, why: null, proof: [] }, open: null, res: null, t: 0 }; RT.scene = 'accuse'; music('tension'); }
 function drawAccuse() {
   const A = RT.acc, W = L.W, H = L.H; A.t += DT; drawBG('board', W, H);
@@ -105,14 +120,29 @@ function drawAccuse() {
   drawHUD({ board: true });
 }
 function drawAccuseChooser() {
-  const A = RT.acc, W = L.W, H = L.H, k = A.open, def = ACCUSE[k]; g.save(); g.fillStyle = 'rgba(0,0,0,.7)'; g.fillRect(0, 0, W, H); g.restore(); addHit('acc_bg', 0, 0, W, H, () => A.open = null);
-  const w = Math.min(W - 24, 560), h = H - 70, x = (W - w) / 2, y = 52; panel(x, y, w, h, { edge: '#ffd23a' }); addHit('acc_panel', x, y, w, h, () => {});
-  txt(def.q, x + w / 2, y + 22, fa(18), '#ffd23a', INK, 3);
+  const A = RT.acc, W = L.W, H = L.H, k = A.open, def = ACCUSE[k]; g.save(); g.fillStyle = 'rgba(0,0,0,.7)'; g.fillRect(0, 0, W, H); g.restore(); addHit('acc_bg', 0, 0, W, H, () => { A.open = null; A.msg = null; });
+  const wide = !L.portrait, w = Math.min(W - 24, k === 'proof' && wide ? 780 : 560), h = H - 64, x = (W - w) / 2, y = 50; panel(x, y, w, h, { edge: '#ffd23a' }); addHit('acc_panel', x, y, w, h, () => {});
+  txt(def.q, x + w / 2, y + 18, fa(17), '#ffd23a', INK, 3);
+  // message slot: Kambree's hint, or why the last pick doesn't fit
+  const m = A.msg && A.msg.k === k ? A.msg : null, mh = wide ? 34 : 48, my = y + 32;
+  g.save(); rr(x + 12, my, w - 24, mh, 10, m ? (m.bad ? 'rgba(160,20,40,.35)' : 'rgba(30,140,90,.3)') : 'rgba(255,90,168,.16)', m ? (m.bad ? '#ff6a7a' : '#5adb9a') : '#ff5aa8', 1.4); g.restore();
+  fitText(tx(m ? (m.bad ? '✗ ' : '✓ ') + m.text : ACC_HINT[k]), x + 22, my + 5, w - 44, mh - 8, px => fo(px, 600), 13, m ? (m.bad ? '#ffd0d6' : '#c8ffe0') : '#ffd0ea', 'left', 1.2, 9);
   let opts; const DECOY = ['coin', 'crabchip', 'golfball', 'toast', 'hawkecontract', 'chadsticker', 'nilcontract', 'yachttape', 'saffron']; if (k === 'proof') opts = GS.clues.filter(c => CLUES[c] && (CLUES[c].proof || DECOY.includes(c))).map(c => [c, CLUES[c].name]); else opts = def.opts;
-  const cols = k === 'why' ? 1 : k === 'proof' ? (L.portrait ? 2 : 3) : (L.portrait ? 1 : 2), gap = 6, bw = (w - 24 - gap * (cols - 1)) / cols, bh = Math.min(k === 'why' ? 52 : 44, (h - 100 - gap * Math.ceil(opts.length / cols)) / Math.ceil(opts.length / cols));
-  opts.forEach(([id, name], i) => { const bx = x + 12 + (i % cols) * (bw + gap), by = y + 42 + Math.floor(i / cols) * (bh + gap); const sel = k === 'proof' ? A.pick.proof.includes(id) : A.pick[k] === id;
-    btn('ao_' + id, bx, by, bw, bh, name, () => { if (k === 'proof') { const p = A.pick.proof; if (sel) p.splice(p.indexOf(id), 1); else if (p.length < 3) p.push(id); else toast('Only 3 cards. Pick your best.', '#ffd23a'); sfx('tap'); } else { A.pick[k] = id; A.open = null; sfx('tap'); } }, { col: sel ? '#1a8a5a' : '#22305a', px: 13, icon: k === 'proof' ? '' : null }); });
-  if (k === 'proof') btn('acc_pdone', x + w / 2 - 80, y + h - 52, 160, 42, 'DONE (' + A.pick.proof.length + '/3)', () => A.open = null, { col: '#2266dd' });
+  if (k === 'proof') opts.sort((a, b) => (def.key.includes(b[0]) ? 1 : 0) - (def.key.includes(a[0]) ? 1 : 0));
+  const top = my + mh + 8, bottom = y + h - (k === 'proof' ? 56 : 10);
+  const cols = k === 'why' ? 1 : k === 'proof' ? (wide ? 4 : 2) : (wide ? 2 : 1), gap = 6, rows = Math.ceil(opts.length / cols), bw = (w - 24 - gap * (cols - 1)) / cols, bh = Math.min(k === 'why' ? 52 : 46, (bottom - top - gap * (rows - 1)) / rows);
+  const right = id => k === 'proof' ? def.need.includes(id) : def.a === id;
+  opts.forEach(([id, name], i) => { const bx = x + 12 + (i % cols) * (bw + gap), by = top + Math.floor(i / cols) * (bh + gap); const sel = k === 'proof' ? A.pick.proof.includes(id) : A.pick[k] === id; const key = k === 'proof' && def.key.includes(id), nope = A.nope && A.nope[id];
+    if (key && !sel) { const pu = .5 + .5 * Math.sin(RT.t * 4); g.save(); g.shadowColor = '#ffd23a'; g.shadowBlur = 10 + 10 * pu; rr(bx - 2, by - 2, bw + 4, bh + 4, 12, null, `rgba(255,210,58,${.6 + .4 * pu})`, 3); g.restore(); }
+    btn('ao_' + id, bx, by, bw, bh, name, () => {
+      if (!right(id)) { A.nope = A.nope || {}; A.nope[id] = 1; A.msg = { k, bad: 1, text: ACC_NOPE[id] || 'That doesn\'t tie Bo Pettigrew to anything. Try a starred card.' }; sfx('wrong'); shake(4); return; }
+      if (k === 'proof') { const p = A.pick.proof; if (sel) { p.splice(p.indexOf(id), 1); A.msg = null; } else if (p.length < 3) { p.push(id); A.msg = { k, bad: 0, text: ACC_OK[id] || 'That fits.' }; } else toast('Only 3 cards. Pick your best.', '#ffd23a'); sfx('tap'); }
+      else { A.pick[k] = id; A.open = null; A.msg = null; sfx('tap'); }
+    }, { col: sel ? '#1a8a5a' : nope ? '#4a2030' : key ? '#3a3410' : '#22305a', px: 13, icon: k === 'proof' ? '' : null });
+    if (key) { const bwid = Math.min(84, bw * .42); rr(bx + bw - bwid - 4, by - 7, bwid, 16, 8, '#ffd23a', INK, 1.5); txt('★ KAMBREE', bx + bw - bwid / 2 - 4, by + 1, fa(9.5), INK, null); }
+    if (nope) txt('✗', bx + 12, by + bh / 2, fa(14), '#ff8a9a', null);
+  });
+  if (k === 'proof') btn('acc_pdone', x + w / 2 - 80, y + h - 50, 160, 40, 'DONE (' + A.pick.proof.length + '/3)', () => { A.open = null; A.msg = null; }, { col: '#2266dd' });
 }
 function accuseResolve() {
   const A = RT.acc, p = A.pick; const okProof = p.proof.filter(c => ACCUSE.proof.need.includes(c)).length >= 3;

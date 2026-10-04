@@ -4,7 +4,7 @@ const ENG = process.argv[2] || 'webkit';
 (async () => { const b = await (ENG === 'webkit' ? webkit : chromium).launch(); let fail = 0;
   for (const land of [false, true]) { const dev = { ...devices[land ? 'iPhone 13 landscape' : 'iPhone 13'] }; if (ENG !== 'webkit') delete dev.defaultBrowserType;
     const ctx = await b.newContext(dev); const p = await ctx.newPage(); const errs = []; p.on('pageerror', e => errs.push(e.message));
-    await p.goto('file://' + path.resolve(__dirname, '../HogTied.html')); await p.waitForTimeout(1200);
+    await p.goto(process.argv[3] || ('file://' + path.resolve(__dirname, '../HogTied.html'))); await p.waitForTimeout(1200);
     const P = land ? 'L' : 'P', shot = n => p.screenshot({ path: path.join(__dirname, 'tmp', 'ACC_' + P + '_' + n + '.png') });
     const click = async id => { const ok = await p.evaluate(id => __HT.click(id), id); await p.waitForTimeout(160); if (!ok) { console.log('  missing hit', id); fail++; } };
     await p.evaluate(() => __HT.jump(15, CH[15].steps.findIndex(s => s.t === 'accuse'))); await p.waitForTimeout(500);

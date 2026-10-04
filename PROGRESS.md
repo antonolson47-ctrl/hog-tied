@@ -45,6 +45,7 @@
   - The 3 key proof cards (Ledger, Lau's Recording, Hog-Head Cane) glow and carry a "★ KAMBREE" badge, and are sorted first.
   - Every wrong pick (suspect, motive or decoy clue) is rejected, with a specific "why it doesn't fit" line. The other valid proofs are still accepted.
   - New test, `test/accuse.js`: PASS in WebKit portrait and landscape.
+- Round 2 tests: full autoplay playthroughs in WebKit portrait and landscape finish the game with 0 errors (33 clues). `accuse.js` passes in WebKit and Chromium. Published as commit f02566a; the live site was verified with `live.js` and `accuse.js <url>` (0 errors).
 
 ## Publishing
 - Repo: https://github.com/antonolson47-ctrl/hog-tied (the Pages site deploys from `main` at `/`)

@@ -28,6 +28,7 @@
   - minigames shot mid-play in both orientations
 - `make_pages.sh` builds `../hog-tied-pages` (index.html, PWA manifest, icons, .nojekyll and sources).
 - Final screenshots are in `screenshots/`.
+- Live site verified (Oct 4, about 2:45 PM CT): HTTP 200, and `test/live.js` in WebKit iPhone 13 portrait and landscape gave 0 errors.
 
 ## Publishing
 - Repo: https://github.com/antonolson47-ctrl/hog-tied (the Pages site deploys from `main` at `/`)
